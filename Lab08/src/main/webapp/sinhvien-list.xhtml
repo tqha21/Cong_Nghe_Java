@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+<h:head>
+
+    <title>Danh sách sinh viên</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        .search-box {
+            margin: 20px 0;
+        }
+
+        .search-input {
+            padding: 10px;
+            width: 350px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .btn-search {
+            padding: 10px 18px;
+            background: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .student-table th {
+            background: #2c3e50;
+            color: white;
+            padding: 12px;
+        }
+
+        .student-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .student-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .btn-edit {
+            background: #0d6efd;
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 5px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-add {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 18px;
+            background: #198754;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .message {
+            display: block;
+            color: #155724;
+            background: #d4edda;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+    </style>
+
+</h:head>
+
+<h:body>
+
+    <div class="container">
+
+        <h2>Danh sách sinh viên</h2>
+
+        <h:messages globalOnly="true"
+                    styleClass="message"/>
+
+        <!-- TÌM KIẾM -->
+        <h:form>
+
+            <div class="search-box">
+
+                <h:inputText
+                        value="#{sinhVienBean.keyword}"
+                        styleClass="search-input"
+                        placeholder="Nhập họ tên hoặc lớp..."/>
+
+                <h:commandButton
+                        value="Tìm kiếm"
+                        styleClass="btn-search"/>
+
+            </div>
+
+            <!-- DANH SÁCH -->
+
+            <h:dataTable
+                    value="#{sinhVienBean.filteredSinhVien}"
+                    var="sv"
+                    styleClass="student-table">
+
+                <h:column>
+
+                    <f:facet name="header">
+                        ID
+                    </f:facet>
+
+                    #{sv.id}
+
+                </h:column>
+
+                <h:column>
+
+                    <f:facet name="header">
+                        Mã SV
+                    </f:facet>
+
+                    #{sv.maSinhVien}
+
+                </h:column>
+
+                <h:column>
+
+                    <f:facet name="header">
+                        Họ tên
+                    </f:facet>
+
+                    #{sv.hoTen}
+
+                </h:column>
+
+                <h:column>
+
+                    <f:facet name="header">
+                        Email
+                    </f:facet>
+
+                    #{sv.email}
+
+                </h:column>
+
+                <h:column>
+
+                    <f:facet name="header">
+                        Lớp
+                    </f:facet>
+
+                    #{sv.lop}
+
+                </h:column>
+
+                <h:column>
+
+                    <f:facet name="header">
+                        Thao tác
+                    </f:facet>
+
+                    <h:commandButton
+                            value="Sửa"
+                            styleClass="btn-edit"
+                            action="#{sinhVienBean.edit(sv.id)}"/>
+
+                    <h:commandButton
+                            value="Xóa"
+                            styleClass="btn-delete"
+                            action="#{sinhVienBean.delete(sv.id)}"/>
+
+                </h:column>
+
+            </h:dataTable>
+
+        </h:form>
+
+        <h:link
+                outcome="sinhvien-form"
+                value="Thêm sinh viên"
+                styleClass="btn-add"/>
+
+    </div>
+
+</h:body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html">
+
+<h:head>
+    <title>Lab 8 - JSF</title>
+
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            width: 700px;
+            margin: 80px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .green {
+            background: #198754;
+        }
+
+        .dark {
+            background: #2c3e50;
+        }
+    </style>
+</h:head>
+
+<h:body>
+
+    <div class="container">
+
+        <h2>Lab 8 - Quản lý sinh viên bằng JSF</h2>
+
+        <p>Chuyển form sang JSF, validation và message</p>
+
+        <h:link outcome="sinhvien-form"
+                value="Mở form sinh viên"
+                styleClass="btn green" />
+
+        <h:link outcome="sinhvien-list"
+                value="Xem danh sách sinh viên"
+                styleClass="btn dark" />
+
+    </div>
+
+</h:body>
+
+</html>
